@@ -1,0 +1,40 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 294 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 208874 0 0
+ciMethod java/lang/Object getClass ()Ljava/lang/Class; 2049 1 256 0 -1
+ciMethod java/lang/Object equals (Ljava/lang/Object;)Z 4097 1 6656 0 -1
+ciMethod java/lang/StringBuilder <init> ()V 585 1 3235 0 -1
+ciMethod java/lang/StringBuilder append (Ljava/lang/String;)Ljava/lang/StringBuilder; 1161 1 7577 0 -1
+ciMethod java/lang/StringBuilder append (I)Ljava/lang/StringBuilder; 0 0 7 0 -1
+ciMethod java/lang/StringBuilder toString ()Ljava/lang/String; 625 1 3246 0 -1
+ciMethod java/util/Collection iterator ()Ljava/util/Iterator; 0 0 1 0 -1
+ciMethod java/util/List iterator ()Ljava/util/Iterator; 0 0 1 0 -1
+ciMethod java/util/AbstractList <init> ()V 449 1 31587 0 32
+ciMethod java/util/AbstractCollection <init> ()V 265 1 38229 0 0
+ciMethod java/lang/Math max (II)I 217 1 13254 0 -1
+ciMethod java/util/Collections unmodifiableList (Ljava/util/List;)Ljava/util/List; 4097 1 3682 0 0
+ciMethod java/util/Iterator hasNext ()Z 0 0 1 0 -1
+ciMethod java/util/Iterator next ()Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/ArrayList <init> ()V 153 1 16983 0 64
+ciMethod java/util/ArrayList ensureCapacityInternal (I)V 641 1 51313 0 576
+ciMethod java/util/ArrayList ensureExplicitCapacity (I)V 641 1 52990 0 544
+ciMethod java/util/ArrayList grow (I)V 89 1 5349 0 544
+ciMethod java/util/ArrayList hugeCapacity (I)I 0 0 1 0 0
+ciMethod java/util/ArrayList size ()I 1097 1 137 0 -1
+ciMethod java/util/ArrayList elementData (I)Ljava/lang/Object; 2081 1 189444 0 -1
+ciMethod java/util/ArrayList get (I)Ljava/lang/Object; 2073 1 181528 0 128
+ciMethod java/util/ArrayList add (Ljava/lang/Object;)Z 641 1 50153 0 736
+ciMethod java/util/ArrayList rangeCheck (I)V 2073 1 189684 0 -1
+ciMethod java/util/ArrayList outOfBoundsMsg (I)Ljava/lang/String; 0 0 1 0 -1
+ciMethod java/util/ArrayList iterator ()Ljava/util/Iterator; 2049 1 23790 0 192
+ciMethod java/util/ArrayList access$100 (Ljava/util/ArrayList;)I 1169 1 146 0 0
+ciMethod java/util/Collections$UnmodifiableRandomAccessList <init> (Ljava/util/List;)V 4097 1 3684 0 0
+ciMethod java/util/Collections$UnmodifiableList <init> (Ljava/util/List;)V 4089 1 3684 0 0
+ciMethod java/util/Collections$UnmodifiableCollection <init> (Ljava/util/Collection;)V 4097 1 3875 0 0
+ciMethod java/util/Collections$UnmodifiableCollection iterator ()Ljava/util/Iterator; 4097 1 6789 0 0
+ciMethod java/util/Arrays copyOf ([Ljava/lang/Object;I)[Ljava/lang/Object; 3129 1 11038 0 0
+ciMethod java/util/Arrays copyOf ([Ljava/lang/Object;ILjava/lang/Class;)[Ljava/lang/Object; 3225 1 6916 0 -1
+ciMethodData java/lang/Object <init> ()V 2 208874 orig 264 184 158 57 102 0 0 0 0 136 4 8 20 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 81 111 25 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/util/ArrayList add (Ljava/lang/Object;)Z 2 50899 orig 264 184 158 57 102 0 0 0 0 176 3 22 20 0 0 0 0 144 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 80 0 0 0 25 52 6 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 15 0 4 0 1 0 64 0 0 0 255 255 255 255 2 0 7 0 0 0 0 0 data 8 0x70002 0xc685 0x1a0104 0x0 0x1663ce00 0x157 0x1663ceb0 0x11 oops 2
