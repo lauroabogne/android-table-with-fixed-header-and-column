@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import table.Table;
+import table_1.CustomTable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("Hello", "World!!!");
         Table table = new Table(this);
-        setContentView(table);
+        CustomTable table1 = new CustomTable(this);
+
+        setContentView(table1);
+
+
 
     }
 }
