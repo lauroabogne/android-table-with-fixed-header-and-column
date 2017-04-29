@@ -108,12 +108,6 @@ public class CustomTableBodyUtils {
         for(Product product : mProducts ){
 
 
-            if(product.unitOfMeasures.size() <=0){
-
-                Log.e("==================","=================");
-                Log.e("product no uom","Product no uom "+product.name);
-                Log.e("==================","=================");
-            }
             List<LinearLayout> columnLinearLayoutTempStorage = new ArrayList<>();
 
 
