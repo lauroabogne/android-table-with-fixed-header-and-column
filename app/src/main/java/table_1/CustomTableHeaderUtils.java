@@ -32,16 +32,16 @@ class CustomTableHeaderUtils {
 
     final static String PRODUCT_INFO_LBL = "PRODUCT INFO";
     final static String PRODUCT_NAME_LBL = "PRODUCT\nNAME";
-    final static String PRODUCT_UNIT_LBL = "UNIT";
+    final static String PRODUCT_UNIT_LBL = "   UNIT   ";
 
     final static String STOCK_AVAILABILITY_LBL = "STOCK\nAVAILABILITY";
     final static String NO_STOCK_LBL = "NO STOCK";
-    final static String WITH_STOCK_LBL = "WITH STOCK";
+    final static String WITH_STOCK_LBL = "WITH STOCK           ";
 
     final static String STOCK_WEIGHT_LBL = "STOCK WEIGHT";
-    final static String LOW_LBL = "LOW";
-    final static String MEDIUM = "MEDIUM";
-    final static String HIGH = "HIGH";
+    final static String LOW_LBL = "    LOW    ";
+    final static String MEDIUM = "   MEDIUM   ";
+    final static String HIGH = "    HIGH    ";
 
 
     LinearLayout mLeftSecondLevelHeaderLinear;
@@ -51,7 +51,6 @@ class CustomTableHeaderUtils {
 
     List<View> mHeaderFirstColumnViews = new ArrayList<>();
     List<View> mHeaderSecondColumnViews = new ArrayList<>();
-
 
 
     /**

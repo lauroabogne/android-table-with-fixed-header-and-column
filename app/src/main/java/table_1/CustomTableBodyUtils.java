@@ -1,6 +1,8 @@
 package table_1;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,19 +51,30 @@ public class CustomTableBodyUtils {
 
         ArrayList<Product> products = new ArrayList<>();
 
-        for(int x = 0 ; x < 20 ;x++){
+        for(int x = 0 ; x < 4 ;x++){
 
             Product product = new Product();
             product.name = "Product "+x;
             product.itemCode = "product code"+x;
 
             ArrayList<ProductUnitOfMeasure> unitOfMeasures = new ArrayList<>();
+            product.unitOfMeasures = unitOfMeasures;
+            products.add(product);
+
+           if(x==0){
+
+               /**
+                * just to simulate that product has no unit of measure
+                */
+                continue;
+            }
+
 
             for(int y = 0 ; y <5 ; y++){
 
                 ProductUnitOfMeasure productUnitOfMeasure = new ProductUnitOfMeasure();
-                if(x == 4){
-                    productUnitOfMeasure.name = "Unit \n\n"+x+" "+y;
+                if(x == 1 && y==0){
+                    productUnitOfMeasure.name = "Too long unit of measures";
                 }else{
                     productUnitOfMeasure.name = "Unit "+x+" "+y;
                 }
@@ -73,9 +87,9 @@ public class CustomTableBodyUtils {
 
             }
 
-            product.unitOfMeasures = unitOfMeasures;
 
-            products.add(product);
+
+
 
         }
 
@@ -94,13 +108,22 @@ public class CustomTableBodyUtils {
         for(Product product : mProducts ){
 
 
-            LinkedHashMap<Product, List<View>> views = new LinkedHashMap<Product, List<View>>();
+            if(product.unitOfMeasures.size() <=0){
+
+                Log.e("==================","=================");
+                Log.e("product no uom","Product no uom "+product.name);
+                Log.e("==================","=================");
+            }
+            List<LinearLayout> columnLinearLayoutTempStorage = new ArrayList<>();
+
 
             LinearLayout leftProductLinearLayout = new LinearLayout(mContext);
             LinearLayout rightProductLinearLayout = new LinearLayout(mContext);
 
             ArrayList<ProductUnitOfMeasure> unitOfMeasures = product.unitOfMeasures;
             int unitOfMeasureCount = unitOfMeasures.size();
+
+            boolean doProductHasUom  = unitOfMeasureCount > 0 ? true :false;
 
             /**
              * for left table body
@@ -144,30 +167,48 @@ public class CustomTableBodyUtils {
                     leftBodyTableLinearLayout.setLayoutParams(layoutParams);
                     leftBodyTableLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
+                    columnLinearLayoutTempStorage.add(leftBodyTableLinearLayout);
 
-                    List<View> uomViews = new ArrayList<>();
 
-                    for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+                    if(doProductHasUom){
+
+                        for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+
+                            LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            layoutParams1.setMargins(1, 1, 1, 1);
+                            layoutParams1.weight = 1;
+
+                            String unitOfMeasure = unitOfMeasures.get(xy).name;
+
+                            TextView textView = new TextView(mContext);
+
+                            textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
+                            textView.setText(unitOfMeasure+" ---");
+                            textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
+
+                            leftBodyTableLinearLayout.addView(textView,layoutParams1);
+
+                        }
+
+                    }else{
 
                         LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         layoutParams1.setMargins(1, 1, 1, 1);
                         layoutParams1.weight = 1;
 
-                        String unitOfMeasure = unitOfMeasures.get(xy).name;
+                        String unitOfMeasure = "NO UNIT OF MEASURE";
 
                         TextView textView = new TextView(mContext);
 
                         textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
-                        textView.setText(unitOfMeasure+" ---");
+                        textView.setText(unitOfMeasure);
                         textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
-
-                        uomViews.add(textView);
 
                         leftBodyTableLinearLayout.addView(textView,layoutParams1);
 
                     }
 
-                    views.put(product,uomViews);
+
 
                     leftProductLinearLayout.addView(leftBodyTableLinearLayout);
 
@@ -175,11 +216,6 @@ public class CustomTableBodyUtils {
                 }
 
             }
-
-
-
-
-
 
 
 
@@ -195,65 +231,191 @@ public class CustomTableBodyUtils {
                 layoutParams.weight = 1;
 
                 LinearLayout leftBodyTableLinearLayout = new LinearLayout(mContext);
-                leftBodyTableLinearLayout.setLayoutParams(layoutParams);
                 leftBodyTableLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
 
+                columnLinearLayoutTempStorage.add(leftBodyTableLinearLayout);
 
-                List<View> uomViews = views.get(product);
 
-                for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+                if(doProductHasUom){
 
-                    LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+
+                        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.WRAP_CONTENT);
+                        layoutParams1.setMargins(1, 1, 1, 1);
+                        layoutParams1.weight = 1;
+
+                        String unitOfMeasure = unitOfMeasures.get(xy).name;
+
+
+                        TextView textView = new TextView(mContext);
+                        textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
+                        textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
+
+                        if(xy == 0 && mProducts.get(0) == product ){
+
+                            textView.setText(unitOfMeasure+" test data long uom  super long uom super uom long--- 1");
+
+
+                        }else if(xy == 1 && mProducts.get(0) == product ){
+
+                            textView.setText(unitOfMeasure+"\n\n\n\n 1");
+
+                        }else{
+                            textView.setText(unitOfMeasure+" ---");
+                        }
+
+                        leftBodyTableLinearLayout.addView(textView,layoutParams1);
+                    }
+
+                }else{
+                    /**
+                     * product no unit of measures
+                     */
+
+                    LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams1.setMargins(1, 1, 1, 1);
                     layoutParams1.weight = 1;
 
-                    String unitOfMeasure = unitOfMeasures.get(xy).name;
-
+                    String unitOfMeasure = "NO UNIT OF MEASURE";
 
                     TextView textView = new TextView(mContext);
                     textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
                     textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
-
-                    uomViews.add(textView);
-
-                    if(xy == 1 && x ==0){
-
-                        textView.setText(unitOfMeasure+"\n\n test data---");
-
-                    }else{
-                        textView.setText(unitOfMeasure+" ---");
-                    }
+                    textView.setText(unitOfMeasure);
 
                     leftBodyTableLinearLayout.addView(textView,layoutParams1);
                 }
+
+
                 rightProductLinearLayout.addView(leftBodyTableLinearLayout);
 
             }
             mRightFourthLevelBodyLinear.addView(rightProductLinearLayout);
 
-            for(Map.Entry<Product, List<View>> header : views.entrySet()){
+            this.applyHeightTest(product,columnLinearLayoutTempStorage);
 
 
-                List<View> viewValues = header.getValue();
 
-                int finalHeight = 0;
+        }
+    }
 
-                for(View view : viewValues){
+    private void applyHeightTest(Product product, List<LinearLayout> linearLayouts){
 
-                    int height = ViewSizeUtils.getViewHeight(view);
+        int uomCount = product.unitOfMeasures.size();
+        int widthIndex  = 0 ;
+        int viewIndex = 0;
 
-                    if( finalHeight < height){
-                        finalHeight = height;
+        LinkedHashMap<Integer,List<Integer>> heigthsTempStorage = new LinkedHashMap<Integer, List<Integer>>();
+
+        /**
+         * init temp storage
+         */
+        for(int x = 0 ; x < uomCount ; x++){
+
+            List<Integer> heightTempStorage = new ArrayList<>();
+            heigthsTempStorage.put(x,heightTempStorage);
+
+        }
+        if(uomCount <=0){
+
+            List<Integer> heightTempStorage = new ArrayList<>();
+            heigthsTempStorage.put(0,heightTempStorage);
+        }
+
+
+        for(LinearLayout linearLayout : linearLayouts){
+
+            int childrenCount = linearLayout.getChildCount();
+            int width =  mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(widthIndex+1);
+
+            for(int x  = 0 ; x < childrenCount ; x++){
+
+                int height = ViewSizeUtils.getViewHeight(linearLayout.getChildAt(x),width);
+
+                List<Integer> height_ = heigthsTempStorage.get(viewIndex);
+
+                if(height_.size() > 0){
+                    /**
+                     * compare
+                     */
+                    int recordedHeight = height_.get(0);
+
+                    if(recordedHeight < height){
+
+                        height_.set(0,height);
+
                     }
+                }else{
+                    /**
+                     * add
+                     */
+
+                    height_.add(height);
+                }
+
+                viewIndex ++;
+
+                if(viewIndex >= uomCount){
+
+                    viewIndex = 0;
 
                 }
 
-                for(View view : viewValues){
 
-                    view.getLayoutParams().height = finalHeight;
+            }
+
+            widthIndex++;
+
+
+
+        }
+
+
+        int viewIndex_ = 0;
+        for(LinearLayout linearLayout : linearLayouts){
+
+            int childrenCount = linearLayout.getChildCount();
+
+            for(int x  = 0 ; x < childrenCount ; x++){
+
+                View view = linearLayout.getChildAt(x);
+                view.getLayoutParams().height = heigthsTempStorage.get(viewIndex_).get(0);
+
+                viewIndex_ ++;
+
+                if(viewIndex_ >= uomCount){
+
+                    viewIndex_ = 0;
 
                 }
+            }
+
+        }
+
+    }
+    private void applyHeight(LinkedHashMap<Product, List<View>> views){
+        for(Map.Entry<Product, List<View>> header : views.entrySet()){
+
+
+            List<View> viewValues = header.getValue();
+
+            int finalHeight = 0;
+
+            for(View view : viewValues){
+
+                int height = ViewSizeUtils.getViewHeight(view);
+
+                if( finalHeight < height){
+                    finalHeight = height;
+                }
+
+            }
+
+            for(View view : viewValues){
+
+                view.getLayoutParams().height = finalHeight;
+
             }
         }
     }
