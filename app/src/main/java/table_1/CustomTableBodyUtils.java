@@ -51,10 +51,16 @@ public class CustomTableBodyUtils {
 
         ArrayList<Product> products = new ArrayList<>();
 
-        for(int x = 0 ; x < 4 ;x++){
+        for(int x = 0 ; x < 20 ;x++){
 
             Product product = new Product();
-            product.name = "Product "+x;
+
+            if(x == 2){
+                product.name = "Product  asdf asdf asdf asdf asdf asdf asdf asd fasdf  asdf asdf asf "+x;
+            }else{
+                product.name = "Product "+x;
+            }
+
             product.itemCode = "product code"+x;
 
             ArrayList<ProductUnitOfMeasure> unitOfMeasures = new ArrayList<>();
@@ -70,7 +76,7 @@ public class CustomTableBodyUtils {
             }
 
 
-            for(int y = 0 ; y <5 ; y++){
+            for(int y = 0 ; y <2 ; y++){
 
                 ProductUnitOfMeasure productUnitOfMeasure = new ProductUnitOfMeasure();
                 if(x == 1 && y==0){
