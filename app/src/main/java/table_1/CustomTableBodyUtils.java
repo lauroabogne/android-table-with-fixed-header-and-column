@@ -120,6 +120,8 @@ public class CustomTableBodyUtils {
             LinearLayout leftProductLinearLayout = new LinearLayout(mContext);
             LinearLayout rightProductLinearLayout = new LinearLayout(mContext);
 
+
+
             ArrayList<ProductUnitOfMeasure> unitOfMeasures = product.unitOfMeasures;
             int unitOfMeasureCount = unitOfMeasures.size();
 
@@ -232,60 +234,82 @@ public class CustomTableBodyUtils {
 
                 LinearLayout leftBodyTableLinearLayout = new LinearLayout(mContext);
                 leftBodyTableLinearLayout.setOrientation(LinearLayout.VERTICAL);
+                leftBodyTableLinearLayout.setLayoutParams(layoutParams);
 
 
                 columnLinearLayoutTempStorage.add(leftBodyTableLinearLayout);
 
 
-                if(doProductHasUom){
 
-                    for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+                if(label.equalsIgnoreCase(CustomTableHeaderUtils.WITH_STOCK_LBL)){
 
-                        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.WRAP_CONTENT);
-                        layoutParams1.setMargins(1, 1, 1, 1);
-                        layoutParams1.weight = 1;
-
-                        String unitOfMeasure = unitOfMeasures.get(xy).name;
-
-
-                        TextView textView = new TextView(mContext);
-                        textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
-                        textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
-
-                        if(xy == 0 && mProducts.get(0) == product ){
-
-                            textView.setText(unitOfMeasure+" test data long uom  super long uom super uom long--- 1");
-
-
-                        }else if(xy == 1 && mProducts.get(0) == product ){
-
-                            textView.setText(unitOfMeasure+"\n\n\n\n 1");
-
-                        }else{
-                            textView.setText(unitOfMeasure+" ---");
-                        }
-
-                        leftBodyTableLinearLayout.addView(textView,layoutParams1);
-                    }
-
-                }else{
-                    /**
-                     * product no unit of measures
-                     */
-
-                    LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.WRAP_CONTENT);
+                    LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.MATCH_PARENT);
                     layoutParams1.setMargins(1, 1, 1, 1);
                     layoutParams1.weight = 1;
 
-                    String unitOfMeasure = "NO UNIT OF MEASURE";
+                    String unitOfMeasure = "ONE CELL ONLY";
 
                     TextView textView = new TextView(mContext);
                     textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
                     textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
                     textView.setText(unitOfMeasure);
+                    textView.setGravity(Gravity.CENTER);
 
                     leftBodyTableLinearLayout.addView(textView,layoutParams1);
+
+                }else{
+
+                    if(doProductHasUom){
+
+                        for(int xy = 0 ; xy < unitOfMeasureCount ; xy++){
+
+                            LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.MATCH_PARENT);
+                            layoutParams1.setMargins(1, 1, 1, 1);
+                            layoutParams1.weight = 1;
+
+                            String unitOfMeasure = unitOfMeasures.get(xy).name;
+
+
+                            TextView textView = new TextView(mContext);
+                            textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
+                            textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
+
+                            if(xy == 0 && mProducts.get(0) == product ){
+
+                                textView.setText(unitOfMeasure+" test data long uom  super long uom super uom long--- 1");
+
+
+                            }else if(xy == 1 && mProducts.get(0) == product ){
+
+                                textView.setText(unitOfMeasure+"\n\n\n\n 1");
+
+                            }else{
+                                textView.setText(unitOfMeasure+" ---");
+                            }
+
+                            leftBodyTableLinearLayout.addView(textView,layoutParams1);
+                        }
+
+                    }else{
+                        /**
+                         * product no unit of measures
+                         */
+
+                        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(x + leftColumnLabelCount), LinearLayout.LayoutParams.MATCH_PARENT);
+                        layoutParams1.setMargins(1, 1, 1, 1);
+                        layoutParams1.weight = 1;
+
+                        String unitOfMeasure = "NO UNIT OF MEASURE";
+
+                        TextView textView = new TextView(mContext);
+                        textView.setPadding(CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING, CustomTableHeaderUtils.PADDING);
+                        textView.setBackgroundColor(CustomTable.BODY_BACKROUND_COLOR);
+                        textView.setText(unitOfMeasure);
+
+                        leftBodyTableLinearLayout.addView(textView,layoutParams1);
+                    }
                 }
+
 
 
                 rightProductLinearLayout.addView(leftBodyTableLinearLayout);
