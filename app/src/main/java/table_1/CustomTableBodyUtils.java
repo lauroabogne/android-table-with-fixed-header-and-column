@@ -55,7 +55,7 @@ public class CustomTableBodyUtils {
 
             Product product = new Product();
 
-            if(x == 2){
+            if(x == 0){
                 product.name = "Product  asdf asdf asdf asdf asdf asdf asdf asd fasdf  asdf asdf asf "+x;
             }else{
                 product.name = "Product "+x;
@@ -67,13 +67,13 @@ public class CustomTableBodyUtils {
             product.unitOfMeasures = unitOfMeasures;
             products.add(product);
 
-           if(x==0){
+           /*if(x==0){
 
-               /**
+               *//**
                 * just to simulate that product has no unit of measure
-                */
+                *//*
                 continue;
-            }
+            }*/
 
 
             for(int y = 0 ; y <2 ; y++){
@@ -348,6 +348,7 @@ public class CustomTableBodyUtils {
         }
 
 
+
         for(LinearLayout linearLayout : linearLayouts){
 
             int childrenCount = linearLayout.getChildCount();
@@ -404,6 +405,131 @@ public class CustomTableBodyUtils {
             for(int x  = 0 ; x < childrenCount ; x++){
 
                 View view = linearLayout.getChildAt(x);
+
+
+
+                view.getLayoutParams().height = heigthsTempStorage.get( getIndexOfHeighestHeight(heigthsTempStorage)).get(0);
+
+
+
+                viewIndex_ ++;
+
+                if(viewIndex_ >= uomCount){
+
+                    viewIndex_ = 0;
+
+                }
+            }
+
+
+        }
+
+
+    }
+
+    private int getIndexOfHeighestHeight(LinkedHashMap<Integer,List<Integer>> heigthsTempStorage){
+
+        int size = heigthsTempStorage.size();
+
+        int heighestHeight = 0 ;
+        int indexOfHeighestHeight = 0;
+
+        for(int x = 0 ; x < size; x++){
+
+            int heigthsTempStorage_ = heigthsTempStorage.get(x).get(0);
+            if(heighestHeight <= heigthsTempStorage_){
+
+                heighestHeight = heigthsTempStorage_;
+                indexOfHeighestHeight = x;
+
+            }
+
+
+        }
+
+        return indexOfHeighestHeight;
+
+    }
+  /*  private void applyHeightTest(Product product, List<LinearLayout> linearLayouts){
+
+        int uomCount = product.unitOfMeasures.size();
+        int widthIndex  = 0 ;
+        int viewIndex = 0;
+
+        LinkedHashMap<Integer,List<Integer>> heigthsTempStorage = new LinkedHashMap<Integer, List<Integer>>();
+
+        *//**
+         * init temp storage
+         *//*
+        for(int x = 0 ; x < uomCount ; x++){
+
+            List<Integer> heightTempStorage = new ArrayList<>();
+            heigthsTempStorage.put(x,heightTempStorage);
+
+        }
+        if(uomCount <=0){
+
+            List<Integer> heightTempStorage = new ArrayList<>();
+            heigthsTempStorage.put(0,heightTempStorage);
+        }
+
+
+        for(LinearLayout linearLayout : linearLayouts){
+
+            int childrenCount = linearLayout.getChildCount();
+            int width =  mCustomTable.mCustomTableHeaderUtils.mSecondColumnsWidth.get(widthIndex+1);
+
+            for(int x  = 0 ; x < childrenCount ; x++){
+
+                int height = ViewSizeUtils.getViewHeight(linearLayout.getChildAt(x),width);
+
+                List<Integer> height_ = heigthsTempStorage.get(viewIndex);
+
+                if(height_.size() > 0){
+                    *//**
+                     * compare
+                     *//*
+                    int recordedHeight = height_.get(0);
+
+                    if(recordedHeight < height){
+
+                        height_.set(0,height);
+
+                    }
+                }else{
+                    *//**
+                     * add
+                     *//*
+
+                    height_.add(height);
+                }
+
+                viewIndex ++;
+
+                if(viewIndex >= uomCount){
+
+                    viewIndex = 0;
+
+                }
+
+
+            }
+
+            widthIndex++;
+
+
+
+        }
+
+
+        int viewIndex_ = 0;
+        for(LinearLayout linearLayout : linearLayouts){
+
+            int childrenCount = linearLayout.getChildCount();
+
+            for(int x  = 0 ; x < childrenCount ; x++){
+
+                View view = linearLayout.getChildAt(x);
                 view.getLayoutParams().height = heigthsTempStorage.get(viewIndex_).get(0);
 
                 viewIndex_ ++;
@@ -417,7 +543,7 @@ public class CustomTableBodyUtils {
 
         }
 
-    }
+    }*/
     private void applyHeight(LinkedHashMap<Product, List<View>> views){
         for(Map.Entry<Product, List<View>> header : views.entrySet()){
 
