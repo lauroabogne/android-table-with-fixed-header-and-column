@@ -2,9 +2,16 @@ package table_1;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
+import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by Lauro-PC on 4/16/2017.
@@ -47,7 +54,11 @@ public class CustomTable extends LinearLayout {
         this.init();
         mCustomTableHeaderUtils = new CustomTableHeaderUtils( this);
         mCustomTableBodyUtils = new CustomTableBodyUtils(this);
+
+        //this.setVisibility(View.INVISIBLE);
     }
+
+
 
     private void init(){
         /**
@@ -102,4 +113,6 @@ public class CustomTable extends LinearLayout {
 
 
     }
+
+
 }
