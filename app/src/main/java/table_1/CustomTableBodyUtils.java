@@ -549,7 +549,11 @@ public class CustomTableBodyUtils {
 
 
                     CustomTableBodyUtils.CustomTextView textView = (CustomTableBodyUtils.CustomTextView) linearLayout.getChildAt(xy);
-                    textView.getLayoutParams().height = heigthsTempStorage.get(xy).get(0);
+
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textView.getLayoutParams();
+                    params.height = heigthsTempStorage.get(xy).get(0);
+
+                    textView.setLayoutParams(params);
 
 
                 }
