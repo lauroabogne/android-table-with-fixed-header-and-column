@@ -55,7 +55,6 @@ public class CustomTable extends LinearLayout {
         mCustomTableHeaderUtils = new CustomTableHeaderUtils( this);
         mCustomTableBodyUtils = new CustomTableBodyUtils(this);
 
-        //this.setVisibility(View.INVISIBLE);
     }
 
 
